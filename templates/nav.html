@@ -1,0 +1,86 @@
+{% load static %}
+
+<header class="header-area">
+
+    <div class="main-header-area">
+        <div class="classy-nav-container breakpoint-off">
+           
+                <nav class="classy-navbar justify-content-between" id="dentoNav">
+
+                    <!-- Logo -->
+                    <a class="nav-brand" href="{% url 'appointment:home' %}">
+                    </a>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <div class="classy-menu">
+
+    
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+
+                            <ul id="nav">
+
+                                <li><a href="{% url 'appointment:home' %}">Home</a></li>
+
+
+
+                                {% if request.user.is_authenticated and request.user.role == 'therapist' %}
+
+                                    <li>
+                                        <a href="">
+                                            <span class="glyphicon glyphicon-user">
+                                                    {{ request.user.first_name }}
+                                            </span>
+                                        </a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'accounts:therapist-profile-update'  %}"> EDIT PROFILE</a></li>
+                                            <li><a href="{% url 'appointment:patient-list' %}"> PATIENTS</a></li>
+                                            <li><a href="{% url 'appointment:therapist-appointment' %}">  APPOINTMENTS</a></li>
+                                            <li><a href="{% url 'appointment:therapist-appointment-create' %}"> CREATE APPOINTMENT</a></li>
+                                            <li><a href="{% url 'accounts:logout' %}"> LOGOUT</a></li>
+
+                                        </ul>
+                                    </li>
+
+
+                             {% elif request.user.is_authenticated and request.user.role == 'patient' %}
+                                    <li>
+                                        <a href="">
+                                            <span class="glyphicon glyphicon-user">
+                                                    {{ request.user.first_name }}
+                                            </span>
+                                        </a>
+                                        <ul class="dropdown">
+
+                                            <li><a href="{% url 'accounts:patient-profile-update'  %}"> EDIT PROFILE</a></li>
+                                            <li><a href="{% url 'accounts:logout' %}"> LOGOUT</a></li>
+
+                                        </ul>
+                                    </li>
+
+                              {% else %}
+                                    <li><a>Register</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'accounts:therapist-register' %}"> THERAPIST</a></li>
+                                            <li><a href="{% url 'accounts:patient-register' %}"> PATIENT</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="{% url 'accounts:login' %}">
+                                            <span class="glyphicon glyphicon-user"> login</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                    </div>
+                </nav>
+        </div>
+    </div>
+</header>

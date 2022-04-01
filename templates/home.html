@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+<h2 Style="text-align: center;">WELCOME TO ORIUS</h2>
+
+    <section>
+
+            
+    </section>
+    {% include 'nav.html' %}
+    <section Style="text-align: center;">
+        
+        <h2>Appointments Available</h2>
+        {% for apt in home %}
+
+            {% if request.user.is_authenticated and request.user.role == 'patient' %}
+                <h5>{{ apt.full_name }}</h5>
+                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
+                    <p>
+                        <a href="{% url 'appointment:take-appointment' apt.id %}"> Take Appointment</a>
+                    </p>
+
+                {% elif request.user.is_authenticated and request.user.role == 'therapist'   %}
+                    <h5>{{ apt.full_name }}</h5>
+                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
+
+                {% else %}
+                    <h5>{{ apt.full_name }}</h5>
+                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
+
+            {% endif %}
+
+        {% endfor %}
+</section>
+
+
+{% endblock %}
