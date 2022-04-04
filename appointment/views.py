@@ -209,4 +209,33 @@ class SearchView(ListView):
 #     def get_queryset(self):
 #         return self.model.objects.filter(user_id=self.request.user.id).order_by('-id')
 
-# class StatusView(UpdateView):
+class AppointmentStatusView(UpdateView):
+
+    model = Appointment
+    template_name = "appointment_status.html"
+    context_object_name = 'appointment'
+
+    # def get(self, request, *args, **kwargs):
+    #     allOrders = Order.objects.all()
+    #     args = {"allOrders": allOrders}
+    #     return render(request, self.template_name, args)
+
+    # def post(self, request):
+    #     orderId = self.request.GET.get("order_id")
+    #     statusAccept = self.request.GET.get("acceptButton")
+    #     statusReject = self.request.GET.get("rejectButton")
+
+    #     if statusAccept:
+    #         try:
+    #             orderDecision = OrderRequest(
+    #                 order_id=orderId,
+    #                 order_status=statusAccept,
+    #             )
+    #             orderDecision.save()
+    #             return redirect("orderDecision")
+    #         except Exception as e:
+    #             return HttpResponse("failed{}".format(e))
+
+    #     if statusReject:
+    #         remove = Order.objects.get(pk=statusReject.id)
+    #         delete(remove)
