@@ -16,7 +16,7 @@ urlpatterns = [
     path('patient-take-appointment/<pk>', TakeAppointmentView.as_view(), name='take-appointment'),
     path('search/', SearchView.as_view(), name='search'),
     path('patient/', PatientListView.as_view(), name='patient-list'),
-    path('appointment-status/', AppointmentStatusView.as_view(), name='appointment-status'),
+    path('<pk>/appointment-status/', AppointmentStatusView.as_view(), name='appointment-status'),
     
     # path('previous-sessions/', PreviousSessionsView.as_view(), name='previous-sessions-list'),
 

@@ -103,3 +103,12 @@ class TakeAppointmentForm(forms.ModelForm):
         if commit:
             appointment.save()
         return appointment
+
+class AppoinmentStatusUpdateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(AppoinmentStatusUpdateForm, self).__init__(*args, **kwargs)
+    
+    class Meta:
+        model = Appointment
+        fields = ['status' ]

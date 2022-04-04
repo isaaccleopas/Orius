@@ -12,6 +12,7 @@ from django.views.generic.edit import DeleteView, UpdateView
 from accounts.forms import PatientProfileUpdateForm, TherapistProfileUpdateForm
 from .forms import CreateAppointmentForm, TakeAppointmentForm
 from .models import Appointment, TakeAppointment
+from appointment.forms import AppoinmentStatusUpdateForm
 
 # Create your views here.
 
@@ -212,8 +213,9 @@ class SearchView(ListView):
 class AppointmentStatusView(UpdateView):
 
     model = Appointment
-    template_name = "appointment_status.html"
+    template_name = "appointment/appointment_status.html"
     context_object_name = 'appointment'
+    form_class = AppoinmentStatusUpdateForm
 
     # def get(self, request, *args, **kwargs):
     #     allOrders = Order.objects.all()

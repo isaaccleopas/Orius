@@ -11,7 +11,7 @@ class Appointment(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     start_time = models.DateTimeField(default=timezone.now)
     end_time = models.DateTimeField(default=timezone.now)
-    status = models.TextField()
+    status = models.TextField(default='PENDING')
 
     
     def __str__(self):
