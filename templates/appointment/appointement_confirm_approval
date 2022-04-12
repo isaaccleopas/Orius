@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Appointment Approval{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-5 mb-5 mb-lg-0">
+                <center>
+                    <h4 class="highlight">Are you sure you want to approve this patient?</h4>
+
+                </center>
+
+
+                <form method="post">{% csrf_token %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                            <th scope="col">Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Message</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td> {{ object.full_name }}</td>
+                            <td>{{ object.date }}</td>
+                            <td> {{ object.phone_number }}</td>
+                            <td>{{ object.message }}</td>
+                        </tr>
+                        </br>
+                        </br>
+                        </tbody>
+                    </table>
+                    <center><input class="btn btn-danger" type="submit" value="Approve">
+                    </center>
+
+
+                </form>
+
+
+                </br>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
