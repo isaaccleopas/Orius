@@ -105,10 +105,12 @@ class TakeAppointmentForm(forms.ModelForm):
         return appointment
 
 class AppoinmentStatusUpdateForm(forms.ModelForm):
+    status = forms.CharField(initial="APPROVED", widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
         super(AppoinmentStatusUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['status'].initial = "APPROVED"
     
     class Meta:
-        model = Appointment
-        fields = ['status' ]
+        model = TakeAppointment
+        fields = ['status']

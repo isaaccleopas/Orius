@@ -12,7 +12,6 @@ class Appointment(models.Model):
     start_time = models.DateTimeField(default=timezone.now)
     end_time = models.DateTimeField(default=timezone.now)
     status = models.TextField(default='PENDING')
-
     
     def __str__(self):
         return self.full_name
@@ -27,6 +26,7 @@ class TakeAppointment(models.Model):
     message = models.TextField()
     phone_number = models.CharField(max_length=120)
     date = models.DateTimeField(default=timezone.now)
-    
+    status = models.TextField(default='PENDING')
+
     def __str__(self):
         return self.full_name

@@ -211,7 +211,10 @@ class PreviousSessionsView(ListView):
     #     return self.model.objects.filter(appointment__user_id=self.request.user.id).order_by('-id')
 
 class AppointmentStatusView(UpdateView):
-    model = Appointment
+    model = TakeAppointment
     template_name = "appointment/appointment_status.html"
     context_object_name = 'appointment'
     form_class = AppoinmentStatusUpdateForm
+
+    def get_initial(self):
+        return {'status': "APPROVED"}
