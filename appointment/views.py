@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from django.utils import timezone
 from django.contrib import messages
@@ -13,6 +14,8 @@ from accounts.forms import PatientProfileUpdateForm, TherapistProfileUpdateForm
 from .forms import CreateAppointmentForm, TakeAppointmentForm
 from .models import Appointment, TakeAppointment
 from appointment.forms import AppoinmentStatusUpdateForm
+
+from django.views import View
 
 # Create your views here.
 
@@ -218,3 +221,17 @@ class AppointmentStatusView(UpdateView):
 
     def get_initial(self):
         return {'status': "APPROVED"}
+
+    def post(self, request, *args, **kwargs):
+        
+        # Change the status of the other TakeAppointments to cancelled
+        status = request.POST['status']
+        pk = kwargs['pk']
+        take_appointment_model = self.model.objects.get(pk=pk)
+
+        # Change the status field in the parent (appointment) model to approved (what was passed)
+        take_appointment_model.appointment.status = status
+        take_appointment_model.appointment.save()
+        
+        print(take_appointment_model.appointment.status)
+        return super().post(request, args, kwargs)
