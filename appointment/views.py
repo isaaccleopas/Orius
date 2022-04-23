@@ -83,7 +83,7 @@ class TakeAppointmentView(CreateView):
     def get_form_kwargs(self):
         kwargs = super(TakeAppointmentView, self).get_form_kwargs()
         kwargs.update({'request': self.request})
-        return kwargs
+        return kwargs        
 
 
 #    For Therapist Profile
@@ -159,7 +159,7 @@ class AppointmentListView(ListView):
         return super().dispatch(self.request, *args, **kwargs)
 
     def get_queryset(self):
-        return self.model.objects.filter(user_id=self.request.user.id).order_by('-id')
+        return self.model.objects.filter(user_id=self.request.user.id).exclude(status="APPROVED").order_by('-id')
 
 
 class PatientListView(ListView):
@@ -193,7 +193,7 @@ class HomePageView(ListView):
     template_name = "home.html"
 
     def get_queryset(self):
-        return self.model.objects.all().order_by('-id')
+        return self.model.objects.exclude(status="APPROVED").order_by('-id')
 
 
 class SearchView(ListView):
@@ -224,7 +224,7 @@ class AppointmentStatusView(UpdateView):
 
     def post(self, request, *args, **kwargs):
         
-        # Change the status of the other TakeAppointments to cancelled
+        
         status = request.POST['status']
         pk = kwargs['pk']
         take_appointment_model = self.model.objects.get(pk=pk)
@@ -232,6 +232,18 @@ class AppointmentStatusView(UpdateView):
         # Change the status field in the parent (appointment) model to approved (what was passed)
         take_appointment_model.appointment.status = status
         take_appointment_model.appointment.save()
+
+
+        # Change the status of the other TakeAppointments to cancelled
+        # get all the other takeappointments
+        appointment_id_we_are_interested_in = take_appointment_model.appointment.id
+        all_the_other_take_appointments = self.model.objects.filter(appointment_id=appointment_id_we_are_interested_in).exclude(id=take_appointment_model.id)
         
-        print(take_appointment_model.appointment.status)
+        # update their status to cancelled
+        all_the_other_take_appointments.update(status="CANCELLED")
+
+        # # save
+        # all_the_other_take_appointments.save()
+        
+        # print(take_appointment_model.appointment.status)
         return super().post(request, args, kwargs)

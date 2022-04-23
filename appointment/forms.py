@@ -60,6 +60,8 @@ class TakeAppointmentForm(forms.ModelForm):
         self.fields['phone_number'].label = "Phone Number"
         self.fields['message'].label = "Message"
 
+        self.fields['appointment'].queryset = Appointment.objects.exclude(status="APPROVED")
+
         self.fields['appointment'].widget.attrs.update(
             {
                 'placeholder': 'Choose Your Therapist',
