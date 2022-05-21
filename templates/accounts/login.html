@@ -16,7 +16,7 @@
 
     <div class="grid">
   
-      <form action="#" method="#" class="form login">
+      <form action="" method="POST" class="form login"> {% csrf_token %}
   
         <div class="form__field">
           <label for="login__username"><svg class="icon">
@@ -33,12 +33,13 @@
         </div>
   
         <div class="form__field">
-          <button class="btn">
-            <svg class="icon">
+          <button>
+            <!-- <svg class="icon">
               <use xlink:href="#icon-arrow-right"></use>
-            </svg>
-            <span><a href="{% url 'accounts:login' %}">Sign in</a></span>
-          <!--<input type="submit" value="Sign In">-->
+            </svg> -->
+            <!-- <input type="submit" value="Login" class="btn"> -->
+            <!-- <span><a href="{% url 'accounts:login' %}">Sign in</a></span> -->
+          <input type="submit" value="Sign In">
         </button>
         </div>
   
