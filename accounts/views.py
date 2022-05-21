@@ -29,7 +29,6 @@ class RegisterPatientView(CreateView):
     def post(self, request, *args, **kwargs):
 
         form = self.form_class(data=request.POST)
-
         if form.is_valid():
             user = form.save(commit=False)
             password = form.cleaned_data.get("password1")
@@ -63,14 +62,12 @@ class RegisterTherapistView(CreateView):
         form = self.form_class(data=request.POST)
 
         if form.is_valid():
-            print('valid')
             user = form.save(commit=False)
             password = form.cleaned_data.get("password1")
             user.set_password(password)
             user.save()
             return redirect('accounts:login')
         else:
-            print('invalid')
             return render(request, 'accounts/therapist/register.html', {'form': form})
 
 
@@ -101,12 +98,10 @@ class LoginView(FormView):
         return self.form_class
 
     def form_valid(self, form):
-        print('valid')
         auth.login(self.request, form.get_user())
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form):
-        print('invalid')
         
         # If the form is invalid, render the invalid form.
         return self.render_to_response(self.get_context_data(form=form))
