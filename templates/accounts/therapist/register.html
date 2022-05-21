@@ -11,37 +11,31 @@
 
 <div class="wrapper">
     <div class="title">
-      Register Here
+      Therapist Registeration
     </div>
     <form action="" method="POST">{% csrf_token %}
 
         <div class="form">
-            <div class="inputfield">
-                <label>User</label>
-                <div class="custom_select">
-                    <option value="patient">Therapist</option>
-                </div>
-             </div> 
            <div class="inputfield">
               <label>First Name</label>
-              <input type="text" class="input">
+              <input name="first_name" type="text" class="input">
            </div>  
             <div class="inputfield">
               <label>Last Name</label>
-              <input type="text" class="input">
+              <input name="last_name" type="text" class="input">
            </div>  
            <div class="inputfield">
               <label>Password</label>
-              <input type="password" class="input">
+              <input name="password1" type="password" class="input">
            </div>  
           <div class="inputfield">
               <label>Confirm Password</label>
-              <input type="password" class="input">
+              <input name="password2" type="password" class="input">
            </div> 
             <div class="inputfield">
               <label>Gender</label>
               <div class="custom_select">
-                <select>
+                <select name="gender">
                     <option value="">Select</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -50,15 +44,15 @@
            </div> 
             <div class="inputfield">
               <label>Email Address</label>
-              <input type="text" class="input">
+              <input name="email" type="text" class="input">
            </div> 
           <div class="inputfield">
               <label>Phone Number</label>
-              <input type="text" class="input">
+              <input name="phone_number" type="text" class="input">
            </div> 
           <div class="inputfield">
               <label>Address</label>
-              <textarea class="textarea"></textarea>
+              <textarea name="address" class="textarea"></textarea>
            </div> 
           <!--<div class="inputfield">
               <label>Postal Code</label>
