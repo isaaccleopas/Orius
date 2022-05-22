@@ -58,7 +58,11 @@ class TakeAppointmentForm(forms.ModelForm):
         self.fields['appointment'].label = "Choose Your Therapist"
         self.fields['full_name'].label = "Full Name"
         self.fields['phone_number'].label = "Phone Number"
-        self.fields['message'].label = "Message"
+        self.fields['the_challenge'].label = "The Challenge"
+        self.fields['gender'].required = True
+        self.fields['age'].label = "Age"
+        self.fields['location'].label = "Location"
+        self.fields['email'].label = "Email"
 
         self.fields['appointment'].queryset = Appointment.objects.exclude(status="APPROVED")
 
@@ -82,15 +86,29 @@ class TakeAppointmentForm(forms.ModelForm):
             }
         )
 
-        self.fields['message'].widget.attrs.update(
+        self.fields['the_challenge'].widget.attrs.update(
             {
                 'placeholder': 'Write a short message',
             }
         )
-
+        self.fields['age'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Age',
+            }
+        )
+        self.fields['location'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Location',
+            }
+        )
+        self.fields['email'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Email',
+            }
+        )
     class Meta:
         model = TakeAppointment
-        fields = ['appointment', 'full_name', 'phone_number', 'message' ]
+        fields = ['appointment', 'full_name', 'phone_number', 'the_challenge', 'age', 'location', 'email', 'gender' ]
 
     def is_valid(self):
         valid = super(TakeAppointmentForm, self).is_valid()
