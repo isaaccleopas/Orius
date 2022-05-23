@@ -14,13 +14,13 @@
 <link href="{% static 'img/favicon.ico' %}" rel="icon">
 
 <!-- Google Web Fonts -->
-<link rel="preconnect" href="{% static 'https://fonts.googleapis.com' %}">
-<link rel="preconnect" href="{% static 'https://fonts.gstatic.com' %}" crossorigin>
-<link href="{% static 'https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap' %}" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Icon Font Stylesheet -->
-<link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css' %}" rel="stylesheet">
-<link href="{% static 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css' %}" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
 <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
@@ -49,8 +49,8 @@
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
-            <a href="#" class="navbar-brand mx-4 mb-3">
-                <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Orius</h3>
+            <a href="{% url 'appointment:home' %}" class="navbar-brand mx-4 mb-3">
+                <h3 class="text-primary">Orius</h3>
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
@@ -58,14 +58,17 @@
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
-                    <h6 class="mb-0">User</h6>
+                    <a href="">
+                        <span class="glyphicon glyphicon-user">
+                            <h6 class="mb-0">{{ request.user.first_name }}</h6>
+                        </span>
+                    </a>
                 </div>
             </div>
             <div class="navbar-nav w-100">
                 <a href="{% url 'appointment:patient-list' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-              
-                <a href="doc.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Doctors</a>
-                <a href="booking.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Book Appointment</a>
+
+                <a href="{% url 'appointment:therapist-appointment-create' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Create Appointment</a>
                
                
             </div>
@@ -125,9 +128,9 @@
                         <span class="d-none d-lg-inline-flex">User</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
+                        <a href="{% url 'accounts:therapist-profile-update'  %}" class="dropdown-item">Edit Profile</a>
                         <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Log Out</a>
+                        <a href="{% url 'accounts:logout' %}" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
             </div>
@@ -176,124 +179,62 @@
         <!-- Recent Sales Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="bg-light text-center rounded p-4">
+                <section>
+                    <div class="container" style="align-items: center; justify-content: center;display: flex;">
+                        <div class="bg-light text-center rounded p-4">
+                            <h3 style="align-items: center;justify-content: center;display: flex"> {{ request.user.first_name }} has {{ patients.count }} Patient/s</h3>
+                        </div>
+                    </div>
+                </section>
+
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Sessions</h6>
+                    <h6 class="mb-0">Patient List</h6>
                     <a href=""></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
                         <thead>
-                            <tr class="text-dark">
+                            <tr>
+                                <th scope="col">Name</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">Therapist</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Message</th>
+            
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
+            
+                            {% for patient in patients %}
                             <tr>
-                                <td>01 Jan 2045</td>
-                                <td>Doctor</td>
-                                <td><button type="button" class="btn btn-primary m-2">Confirmed</button></td>
+                                <td>{{ patient.full_name }}</td>
+                                <td> {{ patient.date }}</td>
+                                <td> {{ patient.phone_number }}</td>
+                                <td>{{ patient.message }}</td>
+                                <td>
+                                    <a href="{% url 'appointment:delete-patient' patient.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'appointment:appointment-status' patient.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
                             </tr>
-                            <tr>
-                                
-                                <td>01 Jan 2045</td>
-                             
-                                <td>Doctor</td>
-                                
-                                <td> <button type="button" class="btn btn-warning m-2">Pending</button></td>
-                                
-                            </tr>
-                            <tr>
-                                
-                                <td>01 Jan 2045</td>
-                                
-                                <td>Doctor</td>
-                                
-                                <td> <button type="button" class="btn btn-warning m-2">Pending</button></td>
-                                
-                            </tr>
-                            <tr>
-                                
-                                <td>01 Jan 2045</td>
-                               
-                                <td>Doctor</td>
-                               
-                                <td> <button type="button" class="btn btn-primary m-2">Confirmed</button></td>
-                                
-                            </tr>
-                            <tr>
-                                <td>01 Jan 2045</td>
-                                
-                                <td>Doctor</td>
-                                
-                                <td> <button type="button" class="btn btn-warning m-2">Pending</button></td>
-                                
-                            </tr>
-                        </tbody>
+                            {% endfor %}
+                            </tbody>
                     </table>
                 </div>
             </div>
         </div>
+    
         <!-- Recent Sales End -->
+    </section>
+    {% include 'nav.html' %}
+    
+    </section>
 
-
-        <!-- Widgets Start -->
-        <div class="container-fluid pt-4 px-4">
-            <div class="row g-4">
-                <div class="col-sm-12 col-md-6 col-xl-4">
-                    <div class="h-100 bg-light rounded p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <h6 class="mb-0">Messages</h6>
-                            <a href=""></a>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom py-3">
-                            <img class="rounded-circle flex-shrink-0" src="{% static 'img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Dr. James</h6>
-                                    <small></small>
-                                </div>
-                                <span>Coming soon...</span>
-                            </div>
-                        </div>
-                        <!--<div class="d-flex align-items-center border-bottom py-3">
-                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom py-3">
-                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center pt-3">
-                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                </div>
-            </div>
-        </div>
-        <!-- Widgets End -->
-    </div>
+        
     <!-- Content End -->
 
 
@@ -302,8 +243,8 @@
 </div>
 
 <!-- JavaScript Libraries -->
-<script src="{% static 'https://code.jquery.com/jquery-3.4.1.min.js' %}"></script>
-<script src="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'lib/chart/chart.min.js' %}"></script>
 <script src="{% static 'lib/easing/easing.min.js' %}"></script>
 <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
@@ -315,50 +256,5 @@
 <!-- Template Javascript -->
 <script src="{% static 'js/main.js' %}"></script>
 
-    <section>
-        <div class="container" style="align-items: center; justify-content: center;display: flex;">
-            <div class="col-12 col-sm-6 col-md-4">
-                <h3 style="align-items: center;justify-content: center;display: flex"> {{ request.user.first_name }} has {{ patients.count }} Patient/s</h3>
-            </div>
-        </div>
-    </section>
-
-
-    <section>
-
-        <div class="container">
-
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Message</th>
-
-                </tr>
-                </thead>
-                <tbody>
-
-                {% for patient in patients %}
-                    <tr>
-                        <td>{{ patient.full_name }}</td>
-                        <td> {{ patient.date }}</td>
-                        <td> {{ patient.phone_number }}</td>
-                        <td>{{ patient.message }}</td>
-                        <td>
-                            <a href="{% url 'appointment:delete-patient' patient.id %}">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </a>
-                            <a href="{% url 'appointment:appointment-status' patient.id %}">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </section>
 
 {% endblock %}

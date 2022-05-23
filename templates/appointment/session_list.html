@@ -14,13 +14,13 @@
 <link href="{% static 'img/favicon.ico' %}" rel="icon">
 
 <!-- Google Web Fonts -->
-<link rel="preconnect" href="{% static 'https://fonts.googleapis.com' %}">
-<link rel="preconnect" href="{% static 'https://fonts.gstatic.com' %}" crossorigin>
-<link href="{% static 'https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap' %}" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Icon Font Stylesheet -->
-<link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css' %}" rel="stylesheet">
-<link href="{% static 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css' %}" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
 <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
@@ -49,8 +49,8 @@
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
-            <a href="#" class="navbar-brand mx-4 mb-3">
-                <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Orius</h3>
+            <a href="{% url 'appointment:home' %}" class="navbar-brand mx-4 mb-3">
+                <h3 class="text-primary">Orius</h3>
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
@@ -58,13 +58,16 @@
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
-                    <h6 class="mb-0">User</h6>
+                    <a href="">
+                        <span class="glyphicon glyphicon-user">
+                            <h6 class="mb-0">{{ request.user.first_name }}</h6>
+                        </span>
+                    </a>
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="{% url 'appointment:patient-list' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="{% url 'appointment:session-list' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
               
-                <a href="doc.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Doctors</a>
                 <a href="booking.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Book Appointment</a>
                
                
@@ -125,52 +128,14 @@
                         <span class="d-none d-lg-inline-flex">User</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
+                        <a href="{% url 'accounts:patient-profile-update'  %}" class="dropdown-item">Edit Profile</a>
                         <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Log Out</a>
+                        <a href="{% url 'accounts:logout' %}" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
             </div>
         </nav>
         <!-- Navbar End -->
-
-
-        <!-- Sale & Revenue Start -->
-        <div class="container-fluid pt-4 px-4">
-            <div class="row g-4">
-                <div class="col-sm-6 col-xl-3">
-                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                        <i class=""></i>
-                        <div class="ms-3">
-                            <p class="mb-2">Confirmed Appointments</p>
-                            <h6 class="mb-0"></h6>
-                        </div>
-                    </div>
-                </div>
-                <!--<div class="col-sm-6 col-xl-3">
-                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                        <div class="ms-3">
-                            <p class="mb-2">Total Sale</p>
-                            <h6 class="mb-0">$1234</h6>
-                        </div>
-                    </div>
-                </div>-->
-                <div class="col-sm-6 col-xl-3">
-                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                        <i class=""></i>
-                        <div class="ms-3">
-                            <p class="mb-2">Pending</p>
-                            <h6 class="mb-0"></h6>
-                        </div>
-                    </div>
-                </div>
-        
-            </div>
-        </div>
-        <!-- Sale & Revenue End -->
-
-
 
 
         <!-- Recent Sales Start -->
@@ -207,73 +172,42 @@
         </div>
         <!-- Recent Sales End -->
 
-
-        <!-- Widgets Start -->
-        <div class="container-fluid pt-4 px-4">
-            <div class="row g-4">
-                <div class="col-sm-12 col-md-6 col-xl-4">
-                    <div class="h-100 bg-light rounded p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <h6 class="mb-0">Messages</h6>
-                            <a href=""></a>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom py-3">
-                            <img class="rounded-circle flex-shrink-0" src="{% static 'img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Dr. James</h6>
-                                    <small></small>
-                                </div>
-                                <span>Coming soon...</span>
-                            </div>
-                        </div>
-                        <!--<div class="d-flex align-items-center border-bottom py-3">
-                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom py-3">
-                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center pt-3">
-                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <div class="w-100 ms-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-0">Jhon Doe</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                                <span>Short message goes here...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                </div>
-            </div>
-        </div>
-        <!-- Widgets End -->
-    </div>
-    <!-- Content End -->
-
+    
+    </section>
+    
+    <section Style="text-align: center;">
+        
+        <h2>Appointments Available</h2>
+        {% for apt in home %}
+    
+            {% if request.user.is_authenticated and request.user.role == 'patient' %}
+                <h5>{{ apt.full_name }}</h5>
+                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
+                    <p>
+                        <a href="{% url 'appointment:take-appointment' apt.id %}"> Take Appointment</a>
+                    </p>
+    
+                {% elif request.user.is_authenticated and request.user.role == 'therapist'   %}
+                    <h5>{{ apt.full_name }}</h5>
+                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
+    
+                {% else %}
+                    <h5>{{ apt.full_name }}</h5>
+                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
+    
+            {% endif %}
+    
+        {% endfor %}
+    </section>
+    
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 
 <!-- JavaScript Libraries -->
-<script src="{% static 'https://code.jquery.com/jquery-3.4.1.min.js' %}"></script>
-<script src="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'lib/chart/chart.min.js' %}"></script>
 <script src="{% static 'lib/easing/easing.min.js' %}"></script>
 <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
@@ -285,7 +219,9 @@
 <!-- Template Javascript -->
 <script src="{% static 'js/main.js' %}"></script>
 
-    <section>
+<section>
+
+    <!-- <section>
         <div class="container" style="align-items: center; justify-content: center;display: flex;">
             <div class="col-12 col-sm-6 col-md-4">
                 <h3 style="align-items: center;justify-content: center;display: flex"> {{ request.user.first_name }} has {{ sessions.count }} Session/s</h3>
@@ -320,6 +256,6 @@
                 </tbody>
             </table>
         </div>
-    </section>
+    </section> -->
 
 {% endblock %}
