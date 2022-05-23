@@ -179,7 +179,7 @@
         
         <h2>Appointments Available</h2>
         {% for apt in home %}
-    
+        
             {% if request.user.is_authenticated and request.user.role == 'patient' %}
                 <h5>{{ apt.full_name }}</h5>
                     <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>

@@ -210,6 +210,13 @@ class PreviousSessionsView(ListView):
     context_object_name = 'sessions'
     template_name = "appointment/session_list.html"
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['home'] = Appointment.objects.all()
+        return context
+
     # def get_queryset(self):
     #     return self.model.objects.filter(appointment__user_id=self.request.user.id).order_by('-id')
 
