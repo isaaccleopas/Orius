@@ -207,6 +207,9 @@ class UserLoginForm(forms.Form):
     def get_user(self):
         return self.user
 
+    # def login():
+
+
 
 class PatientProfileUpdateForm(forms.ModelForm):
 

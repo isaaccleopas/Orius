@@ -2,6 +2,7 @@ from django.contrib import messages, auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, FormView, RedirectView
+from django.contrib.auth import login
 from accounts.forms import *
 from accounts.models import User
 
@@ -85,8 +86,29 @@ class LoginView(FormView):
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
+            # print("GO HOME")
             return HttpResponseRedirect(self.get_success_url())
         return super().dispatch(self.request, *args, **kwargs)
+        
+    def post(self, request, *args, **kwargs):
+
+        form = self.form_class(data=request.POST)
+
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            print(user.is_authenticated)
+            if user.role == "patient":
+                return redirect('appointment:session-list')
+
+            if user.role == "therapist":
+                return redirect('appointment:patient-list')
+
+            return redirect('appointment:home')
+
+        else:
+            return render(request, 'accounts/login.html', {'form': form})
+
 
     def get_success_url(self):
         if 'next' in self.request.GET and self.request.GET['next'] != '':
