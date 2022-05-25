@@ -8,7 +8,6 @@ from accounts.models import User
 
 # Create your views here.
 
-
 class RegisterPatientView(CreateView):
    
 # Provides the ability to register as a Patient
@@ -87,7 +86,7 @@ class LoginView(FormView):
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return HttpResponseRedirect(self.get_success_url())
-            
+
         return super().dispatch(self.request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
