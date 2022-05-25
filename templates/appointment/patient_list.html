@@ -69,6 +69,8 @@
                 <a href="{% url 'appointment:patient-list' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
 
                 <a href="{% url 'appointment:therapist-appointment-create' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Create Appointment</a>
+                
+                <a href="{% url 'appointment:therapist-appointment' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Appointment</a>
                
                
             </div>
@@ -198,7 +200,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Phone Number</th>
-                                <th scope="col">Message</th>
+                                <th scope="col">The Challenge</th>
             
                             </tr>
                             </thead>
@@ -209,15 +211,13 @@
                                 <td>{{ patient.full_name }}</td>
                                 <td> {{ patient.date }}</td>
                                 <td> {{ patient.phone_number }}</td>
-                                <td>{{ patient.message }}</td>
+                                <td>{{ patient.the_challenge }}</td>
                                 <td>
-                                    <a href="{% url 'appointment:delete-patient' patient.id %}">
-                                        <span class="glyphicon glyphicon-trash"></span>
+                                    <a href="{% url 'appointment:delete-patient' patient.id %}"> Delete
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'appointment:appointment-status' patient.id %}">
-                                        <span class="glyphicon glyphicon-trash"></span>
+                                    <a href="{% url 'appointment:appointment-status' patient.id %}">Approve
                                     </a>
                                 </td>
                             </tr>

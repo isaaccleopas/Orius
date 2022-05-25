@@ -58,7 +58,7 @@ class TakeAppointmentView(CreateView):
     extra_context = {
         'title': 'Take Appointment'
     }
-    success_url = reverse_lazy('appointment:home')
+    success_url = reverse_lazy('appointment:session-list')
 
     @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
     def dispatch(self, request, *args, **kwargs):
@@ -225,6 +225,7 @@ class AppointmentStatusView(UpdateView):
     template_name = "appointment/appointment_status.html"
     context_object_name = 'appointment'
     form_class = AppoinmentStatusUpdateForm
+    success_url = reverse_lazy('appointment:patient-list')
 
     def get_initial(self):
         return {'status': "APPROVED"}
