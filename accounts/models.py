@@ -16,7 +16,7 @@ class User(AbstractUser):
         'required': "Role must be provided"
     })
     gender = models.CharField(max_length=10, blank=True, null=True, default="")
-    age = models.CharField(max_length=5, blank=True, null=True, default="")
+    address = models.TextField(max_length=200, blank=True, null=True, default="")
     email = models.EmailField(unique=True, blank=False,
                               error_messages={
                                   'unique': "A user with that email already exists.",

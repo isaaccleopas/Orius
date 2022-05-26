@@ -4,39 +4,447 @@
 
 {% block title %}Home{% endblock %}
 
+{% block static %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/aos.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/templatemo-digital-trend.css' %}">
+
+{% endblock %}
+
 
 {% block content %}
-<h2 Style="text-align: center;">WELCOME TO ORIUS</h2>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'appointment:home' %}">
+            <img src="{% static 'images/foundlogo.jpg' %}" height="50px">
+            <!--<i class="fa fa-line-chart"></i>-->
+            Orius Medical
+        </a>
 
-    <section>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            
-    </section>
-    {% include 'nav.html' %}
-    <section Style="text-align: center;">
-        
-        <h2>Appointments Available</h2>
-        {% for apt in home %}
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="{% url 'appointment:home' %}" class="nav-link smoothScroll">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'accounts:patient-register' %}" class="nav-link smoothScroll">Register As
+                        Patient</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'accounts:therapist-register' %}" class="nav-link smoothScroll">Register As
+                        Therapist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'accounts:login' %}" class="nav-link contact">LogIn</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-            {% if request.user.is_authenticated and request.user.role == 'patient' %}
-                <h5>{{ apt.full_name }}</h5>
-                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
-                    <p>
-                        <a href="{% url 'appointment:take-appointment' apt.id %}"> Take Appointment</a>
-                    </p>
 
-                {% elif request.user.is_authenticated and request.user.role == 'therapist'   %}
-                    <h5>{{ apt.full_name }}</h5>
-                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
+<!-- HERO -->
+<section class="hero hero-bg d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
 
-                {% else %}
-                    <h5>{{ apt.full_name }}</h5>
-                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
+            <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
+                <div class="hero-text">
 
-            {% endif %}
+                    <h1 class="text-white" data-aos="fade-up" style="color: black;">FREE THERAPY<br> FOR EVERYONE</h1>
 
-        {% endfor %}
+                    <a href="#" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">BOOK A
+                        SESSION WITH A QUALIFIED <br>THERAPIST
+                        100% ONLINE.</a>
+
+                    <strong class="d-block py-3 pl-5 text-white" data-aos="fade-up" data-aos-delay="200"></strong>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-12">
+                <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
+
+                    <img src="{% static 'images/11.png' %}" class="img-fluid" alt="cannot display image">
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>
 
+
+
+<section class="about section-padding pb-0" id="about">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-7 mx-auto col-md-10 col-12">
+                <div class="about-info">
+
+                    <h2 class="mb-4" data-aos="fade-up">We discovered that many Nigerians do
+                        not practice good mental hygiene</h2>
+
+                    <p class="mb-0" data-aos="fade-up">The issue is highly stigmatized, and most suggested solutions are
+                        geared towards unsafe practices.</p>
+
+                    <h2 class="mb-4" data-aos="fade-up"></h2>
+
+                    <p class="mb-0" data-aos="fade-up">Many individuals still see mental health as a strange topic or
+                        something that <br>is only discussed by the weak.</p>
+
+                </div>
+
+                <div class="about-image" data-aos="fade-up" data-aos-delay="200">
+
+                    <img src="{% static 'images/office.png' %}" class="img-fluid" alt="office">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="about_section layout_padding">
+    <div class="container">
+        <h2>
+            SERVICES
+        </h2>
+        <p>
+            HOW WE HELP
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="about_card-container">
+            <div class="about_card">
+                <div class="about-detail">
+                    <div class="about_img-box">
+                        <img src="{% static 'images/laptop.jpg' %}" alt="">
+                    </div>
+                    <div class="card_detail-ox">
+                        <h4>
+                            Teletherapy
+                        </h4>
+                        <p>
+                            Our experts provide on demand online therapy to patient
+                            everywhere free of charge.
+                        </p>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <div class="about_card">
+                <div class="about-detail">
+                    <div class="about_img-box">
+                        <img src="{% static 'images/chat.png' %}" alt="">
+                    </div>
+                    <div class="card_detail-ox">
+                        <h4>
+                            Counselling
+                        </h4>
+                        <p>
+                            We provide virtual guidance and counselling to adults
+                            and teens on life decisions.
+                        </p>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <div class="about_card">
+                <div class="about-detail">
+                    <div class="about_img-box">
+                        <img src="{% static 'images/brain.jpg' %}" alt="">
+                    </div>
+                    <div class="card_detail-ox">
+                        <h4>
+                            Mental Care
+                        </h4>
+                        <p>
+                            We liaise with and refer patients who require in-person
+                            psychiatric care or treatment.
+                        </p>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+
+            <div class="about_card">
+                <div class="about-detail">
+                    <div class="about_img-box">
+                        <img src="{% static 'images/work.jpg' %}" alt="">
+                    </div>
+                    <div class="card_detail-ox">
+                        <h4>
+                            Workshops
+                        </h4>
+                        <p>
+                            We liaise with and refer patients who require in-person
+                            psychiatric care or treatment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about_card">
+                <div class="about-detail">
+                    <div class="about_img-box">
+                        <img src="{% static 'images/work.jpg' %}" alt="">
+                    </div>
+                    <div class="card_detail-ox">
+                        <h4>
+                            Outreach
+                        </h4>
+                        <p>
+                            We organise awareness programs to increase and improve
+                            public knowledge of mental health.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="about_card">
+                <div class="about-detail">
+                    <div class="about_img-box">
+                        <img src="{% static 'images/work.jpg' %}" alt="">
+                    </div>
+                    <div class="card_detail-ox">
+                        <h4>
+                            Merchandise
+                        </h4>
+                        <p>
+                            COMING SOON!<br>
+                            Mental health branded merch like shirts, bags, caps,
+                            mugs, bottles etc.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+<section class="testimonial section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-5 col-12">
+                <div class="contact-image" data-aos="fade-up">
+
+                    <img src="{% static 'images/10.png' %}" class="img-fluid" alt="image here" height="280px" width="500px">
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-7 col-12">
+
+
+                <div class="quote" data-aos="fade-up" data-aos-delay="200"></div>
+
+                <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">
+                    We have put together a team of experts to help out.</h3>
+
+
+                <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">Orius Medical aims to provide mental support
+                    and care to everyone, everywhere.</h3>
+
+
+                <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">Our Psychologists, Therapists, Psychiatrists
+                    and Counsellors are always ready to volunteer their time and expertise to provide the help you need.
+                </h3>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section class="team_section layout_padding">
+    <div class="container">
+        <h2>
+            OUR TEAM
+        </h2>
+        <p>
+            It is a long established fact that a reader will be distracted by the readable
+        </p>
+    </div>
+    <div class="container">
+        <div class="team_card-container layout_padding2">
+            <div class="team_card">
+                <div class="team_img-box">
+                    <img src="{% static 'images/james.jpg' %}" alt="">
+                </div>
+                <div class="team_detail-box">
+                    <h5>
+                        James Adebisi
+                    </h5>
+                    <p>
+                        Founder, President
+                    </p>
+                </div>
+            </div>
+            <div class="team_card">
+                <div class="team_img-box">
+                    <img src="{% static 'images/sharon.jpg' %}" alt="">
+                </div>
+                <div class="team_detail-box">
+                    <h5>
+                        Sharon Abraham
+                    </h5>
+                    <p>
+                        Head Of Operations
+                    </p>
+                </div>
+            </div>
+            <div class="team_card">
+                <div class="team_img-box">
+                    <img src="{% static 'images/idowu.jpg' %}" alt="">
+                </div>
+                <div class="team_detail-box">
+                    <h5>
+                        Timilehin Idowu-Tunji
+                    </h5>
+                    <p>
+                        Lead Ambasador
+                    </p>
+                </div>
+            </div>
+
+            <div class="team_card">
+                <div class="team_img-box">
+                    <img src="{% static 'images/anthony.jpg' %}" alt="">
+                </div>
+                <div class="team_detail-box">
+                    <h5>
+                        Anthony Olorundare
+                    </h5>
+                    <p>
+                        Lead Psychologist
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
+                <h1 class="text-white" data-aos="fade-up" data-aos-delay="100"></h1>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="200">
+                <h4 class="my-4">Contact Info</h4>
+
+                <p class="mb-1">
+                    <i class="fa fa-phone mr-2 footer-icon"></i>
+                    +234 0706 105 0295
+                </p>
+
+                <p>
+                    <a href="#">
+                        <i class="fa fa-envelope mr-2 footer-icon"></i>
+                        hello@orius.ng
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="300">
+                <h4 class="my-4">HeadQuarter</h4>
+
+                <p class="mb-1">
+                    <i class="fa fa-home mr-2 footer-icon"></i>
+                    Lagos, NG
+                </p>
+            </div>
+
+            <div class="col-lg-4 mx-lg-auto text-center col-md-8 col-12" data-aos="fade-up" data-aos-delay="400">
+                <p class="copyright-text">© Orius Medical 2022 | All Rights Reserved2022
+                    <br>
+                    <a rel="nofollow noopener" href="'https://templatemo.com"></a>
+                </p>
+            </div>
+
+            <div class="col-lg-4 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
+
+                <ul class="footer-link">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">Work with us</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
+                <ul class="social-icon">
+                    <li><a href="#" class="fa fa-instagram"></a></li>
+                    <li><a href="#" class="fa fa-twitter"></a></li>
+                    <li><a href="#" class="fa fa-dribbble"></a></li>
+                    <li><a href="#" class="fa fa-behance"></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/smoothscroll.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 
 {% endblock %}

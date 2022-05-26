@@ -2,11 +2,11 @@ from django.contrib import messages, auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, FormView, RedirectView
+from django.contrib.auth import login
 from accounts.forms import *
 from accounts.models import User
 
 # Create your views here.
-
 
 class RegisterPatientView(CreateView):
    
@@ -29,7 +29,6 @@ class RegisterPatientView(CreateView):
     def post(self, request, *args, **kwargs):
 
         form = self.form_class(data=request.POST)
-
         if form.is_valid():
             user = form.save(commit=False)
             password = form.cleaned_data.get("password1")
@@ -87,7 +86,27 @@ class LoginView(FormView):
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return HttpResponseRedirect(self.get_success_url())
+
         return super().dispatch(self.request, *args, **kwargs)
+        
+    def post(self, request, *args, **kwargs):
+
+        form = self.form_class(data=request.POST)
+
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            if user.role == "patient":
+                return redirect('appointment:session-list')
+
+            if user.role == "therapist":
+                return redirect('appointment:patient-list')
+
+            return redirect('appointment:home')
+
+        else:
+            return render(request, 'accounts/login.html', {'form': form})
+
 
     def get_success_url(self):
         if 'next' in self.request.GET and self.request.GET['next'] != '':

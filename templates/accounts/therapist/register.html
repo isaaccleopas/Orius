@@ -2,58 +2,77 @@
 {% load bootstrap %}
 
 {% block title %} Therapist Registration {% endblock %}
+{% block static %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}">
 
+{% endblock %}
 {% block content %}
 
-
-
-<div class="container">
-
-    <div class="row justify-content-center">
-
-        <div class="col-lg-5 mb-5 mb-lg-0">
-
-                 <center><h3>Therapist Registration</h3> </center>
-            <form action="" method="POST">{% csrf_token %}
-
-                    {% for field in form %}
-                {% if field.name == 'gender' %}
-    
-                    <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="male gender"
-                                    value="male">
-                            <label class="form-check-label" for="male">Male</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="female"
-                                    value="female">
-                            <label class="form-check-label" for="female">Female</label>
-                        </div>
-                    </div>
-    
-                {% else %}
-    
-                    <div class="form-group">
-                        <label for="id_{{ field.name }}">{{ field.label }}</label>
-                        <input type="{{ field.field.widget.input_type }}"
-                                class="form-control"
-                                name="{{ field.name }}"
-                                id="id_{{ field.name }}"
-                                placeholder="{{ field.field.widget.attrs.placeholder }}">
-                    </div>
-    
-                {% endif %}
-                    {% endfor %}
-
-                <input type="submit" value="Register" class="btn btn-primary btn-md text-white">
-
-            </form>
-        </div>
-
+<div class="wrapper">
+    <div class="title">
+      Therapist Registeration
     </div>
+    <form action="" method="POST">{% csrf_token %}
+
+        <div class="form">
+           <div class="inputfield">
+              <label>First Name</label>
+              <input name="first_name" type="text" class="input">
+           </div>  
+            <div class="inputfield">
+              <label>Last Name</label>
+              <input name="last_name" type="text" class="input">
+           </div>  
+           <div class="inputfield">
+              <label>Password</label>
+              <input name="password1" type="password" class="input">
+           </div>  
+          <div class="inputfield">
+              <label>Confirm Password</label>
+              <input name="password2" type="password" class="input">
+           </div> 
+            <div class="inputfield">
+              <label>Gender</label>
+              <div class="custom_select">
+                <select name="gender">
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+              </div>
+           </div> 
+            <div class="inputfield">
+              <label>Email Address</label>
+              <input name="email" type="text" class="input">
+           </div> 
+          <div class="inputfield">
+              <label>Phone Number</label>
+              <input name="phone_number" type="text" class="input">
+           </div> 
+          <div class="inputfield">
+              <label>Address</label>
+              <textarea name="address" class="textarea"></textarea>
+           </div> 
+          <!--<div class="inputfield">
+              <label>Postal Code</label>
+              <input type="text" class="input">
+           </div>-->
+          <!--<div class="inputfield terms">
+              <label class="check">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <p>Agreed to terms and conditions</p>
+           </div> -->
+          <div class="inputfield">
+            <input type="submit" value="Register" class="btn">
+          </div>
+        </div>       
+
+    </form>
+    
 </div>
+
 
 {% endblock %}
