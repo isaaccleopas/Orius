@@ -14,7 +14,8 @@ class Appointment(models.Model):
     status = models.TextField(default='PENDING')
     
     def __str__(self):
-        return self.full_name
+        desc = '{} {}'.format(self.user.first_name, self.user.last_name)
+        return desc
 
     # return reverse('appointment:delete-appointment', kwargs={'pk': self.pk})
 GENDER_CHOICES = (

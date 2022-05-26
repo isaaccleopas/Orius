@@ -148,7 +148,7 @@
             
               {% for apt in appointment %} 
                   <div >
-                    <h5>{{ apt.full_name }}</h5>
+                    <h5>{{ apt.user.first_name }} {{ apt.user.last_name }}</h5>
                       <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
                       <p>
                           <i class="fa fa-trash-o" style="color: red" aria-hidden="true"></i>

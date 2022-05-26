@@ -157,7 +157,7 @@
             
                             {% for session in sessions %}
                                 <tr>
-                                    <td>{{ session.appointment.full_name }}</td>
+                                    <td>{{ session.appointment.user.first_name }} {{ session.appointment.user.last_name }}</td>
                                     <td> {{ session.date }}</td>
                                     <td>{{ session.status }}</td>
             
@@ -176,21 +176,21 @@
     <section Style="text-align: center;">
         
         <h2>Appointments Available</h2>
-        {% for apt in home %}
+        {% for apt in appointments %}
         
             {% if request.user.is_authenticated and request.user.role == 'patient' %}
-                <h5>{{ apt.full_name }}</h5>
+                <h5>{{ apt.user.first_name }} {{ apt.user.last_name }}</h5>
                     <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
                     <p>
                         <a href="{% url 'appointment:take-appointment' apt.id %}"> Take Appointment</a>
                     </p>
     
                 {% elif request.user.is_authenticated and request.user.role == 'therapist'   %}
-                    <h5>{{ apt.full_name }}</h5>
+                    <h5>{{ apt.user.first_name }} {{ apt.user.last_name }}</h5>
                     <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
     
                 {% else %}
-                    <h5>{{ apt.full_name }}</h5>
+                    <h5>{{ apt.user.first_name }} {{ apt.user.last_name }}</h5>
                     <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
     
             {% endif %}

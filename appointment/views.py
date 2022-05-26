@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRe
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -23,12 +24,19 @@ from django.views import View
 # For Patient Profile
     
 
-class EditPatientProfileView(UpdateView):
+class EditPatientProfileView(UserPassesTestMixin, UpdateView):
     model = User
     form_class = PatientProfileUpdateForm
     context_object_name = 'patient'
     template_name = 'accounts/patient/edit-profile.html'
     success_url = reverse_lazy('accounts:patient-profile-update')
+
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "patient"
 
     @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
     @method_decorator(user_is_patient)
@@ -52,13 +60,20 @@ class EditPatientProfileView(UpdateView):
         return obj
 
 
-class TakeAppointmentView(CreateView):
+class TakeAppointmentView(UserPassesTestMixin, CreateView):
     template_name = 'appointment/take_appointment.html'
     form_class = TakeAppointmentForm
     extra_context = {
         'title': 'Take Appointment'
     }
     success_url = reverse_lazy('appointment:session-list')
+
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "patient"
 
     @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
     def dispatch(self, request, *args, **kwargs):
@@ -89,12 +104,19 @@ class TakeAppointmentView(CreateView):
 #    For Therapist Profile
 
 
-class EditTherapistProfileView(UpdateView):
+class EditTherapistProfileView(UserPassesTestMixin, UpdateView):
     model = User
     form_class = TherapistProfileUpdateForm
     context_object_name = 'therapist'
     template_name = 'accounts/therapist/edit-profile.html'
     success_url = reverse_lazy('accounts:therapist-profile-update')
+
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "therapist"
 
     @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
     @method_decorator(user_is_therapist)
@@ -119,13 +141,20 @@ class EditTherapistProfileView(UpdateView):
         return obj
 
 
-class AppointmentCreateView(CreateView):
+class AppointmentCreateView(UserPassesTestMixin, CreateView):
     template_name = 'appointment/appointment_create.html'
     form_class = CreateAppointmentForm
     extra_context = {
         'title': 'Post New Appointment'
     }
     success_url = reverse_lazy('appointment:therapist-appointment')
+
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "therapist"
 
     @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
     def dispatch(self, request, *args, **kwargs):
@@ -148,10 +177,17 @@ class AppointmentCreateView(CreateView):
             return self.form_invalid(form)
 
 
-class AppointmentListView(ListView):
+class AppointmentListView(UserPassesTestMixin, ListView):
     model = Appointment
     template_name = 'appointment/appointment.html'
     context_object_name = 'appointment'
+
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "therapist"
 
     @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
     @method_decorator(user_is_therapist)
@@ -162,26 +198,46 @@ class AppointmentListView(ListView):
         return self.model.objects.filter(user_id=self.request.user.id).exclude(status="APPROVED").order_by('-id')
 
 
-class PatientListView(ListView):
+class PatientListView(UserPassesTestMixin, ListView):
     model = TakeAppointment
     context_object_name = 'patients'
     template_name = "appointment/patient_list.html"
+
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "therapist"
 
     def get_queryset(self):
         return self.model.objects.filter(appointment__user_id=self.request.user.id).order_by('-id')
 
 
-class PatientDeleteView(DeleteView):
+class PatientDeleteView(UserPassesTestMixin, DeleteView):
     model = TakeAppointment
     success_url = reverse_lazy('appointment:patient-list')
 
+    login_url="/"
 
-class AppointmentDeleteView(DeleteView):
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "therapist"
+
+
+class AppointmentDeleteView(UserPassesTestMixin, DeleteView):
 
     #    For Delete any Appointment created by Therapist
     model = Appointment
     success_url = reverse_lazy('appointment:therapist-appointment')
 
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "therapist"
 
 #    For both Profile
 
@@ -205,27 +261,41 @@ class SearchView(ListView):
     def get_queryset(self):
         return self.model.objects.filter()
 
-class PreviousSessionsView(ListView):
+class PreviousSessionsView(UserPassesTestMixin, ListView):
     model = TakeAppointment
     context_object_name = 'sessions'
     template_name = "appointment/session_list.html"
+    
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "patient"
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
+        
         context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['home'] = Appointment.objects.all()
+        
+        context['appointments'] = Appointment.objects.filter(status="PENDING")
         return context
 
-    # def get_queryset(self):
-    #     return self.model.objects.filter(appointment__user_id=self.request.user.id).order_by('-id')
+    def get_queryset(self):
+        return self.model.objects.filter(user_id=self.request.user.id).order_by('-id')
 
-class AppointmentStatusView(UpdateView):
+class AppointmentStatusView(UserPassesTestMixin, UpdateView):
     model = TakeAppointment
     template_name = "appointment/appointment_status.html"
     context_object_name = 'appointment'
     form_class = AppoinmentStatusUpdateForm
     success_url = reverse_lazy('appointment:patient-list')
+
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "therapist"
 
     def get_initial(self):
         return {'status': "APPROVED"}
