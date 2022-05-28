@@ -141,3 +141,5 @@ import django_on_heroku
 django_on_heroku.settings(locals())
 
 CSRF_TRUSTED_ORIGINS = ['https://ancient-castle-94782.herokuapp.com/']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
