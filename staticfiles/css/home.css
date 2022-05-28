@@ -1,0 +1,158 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+.headerr{
+    width: 100%;
+    height: 120vh;
+    position: relative;
+}
+.head{
+    width: 100%;
+    height: 60vh;
+    position: relative;
+}
+.headerr .navbarr{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    margin-top: 30px;
+}
+.titlee{
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+}
+.logoo img{
+    margin-left: 100px;
+}
+.menuu ul li{
+    display: inline-block;
+    padding: 0 25px;
+    cursor: pointer;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 80px;
+    align-items: center;
+}
+.login-btnn{
+    
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: rgb(174, 174, 219);/*orius theme*/
+    padding: 8px 40px;
+    margin-right: 100px;
+    color: rgb(93, 52, 146);
+}
+.banner{
+    width: 80%;
+    height: 70%;
+    position: absolute;
+    top: 25%;
+    left: 150px;
+    color: #fff;
+}
+.app-text{
+    width: 50%;
+    float: left;
+    padding-left: 1 0px;
+}
+/*.app-text h3{
+    margin-top: 100px;
+    font-size: 17px;
+    color: aqua;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}*/
+.app-text h1{
+    font-size: 51px;
+    position: relative;
+    color: black;
+    margin-top: 30px;
+    font-weight: 700;
+    line-height: 1;
+}
+.app-text p{
+    font-size: 19px;
+    margin: 30px 30px 30px 0;
+    letter-spacing: 1px;
+    color: rgb(29, 54, 199);
+    padding-right: 150px;
+}
+.btn-group{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+.btn-group .signup-btn{
+    cursor: pointer;
+    display: block;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 32px;
+    background-color: rgb(246, 246, 248);
+    padding: 15px 50px;
+}
+
+.app-picture{
+    width: 50%;
+    float: right;
+    padding-left: 1 0px;
+    height: 200px;
+}
+
+.about-services{
+    position: absolute;
+    top: 90%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    padding: 0 300px;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+@media (max-width: 800px) {
+    .about-services {
+      flex: 100%;
+    }
+  }
+.about-services ul{
+    display: inline-flex;
+    margin: 30px;
+    text-align: center;
+}
+.about-services ul li{
+    margin: 0 50px;
+    cursor: pointer;
+}
+.about-services ul li img{
+    width: 200px;
+    height: auto;
+}
+.about-services ul li h2{
+    font-size: 30px;
+    margin-top: 40px;
+}
+.about-services ul li p{
+    font-size: 15px;
+    margin-top: 20px;
+    font-weight: 700;
+}
