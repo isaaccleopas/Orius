@@ -139,3 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configure Django App for Heroku.
 import django_on_heroku
 django_on_heroku.settings(locals())
+
+CSRF_TRUSTED_ORIGINS = ['https://ancient-castle-94782.herokuapp.com/']
