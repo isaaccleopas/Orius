@@ -1,8 +1,8 @@
 /********** Template CSS **********/
 :root {
-    --primary: #009CFF;
+    --primary: #0000AC;
     --light: #F3F6F9;
-    --dark: #191C24;
+    --dark: #0000AC;
 }
 
 .back-to-top {
@@ -12,8 +12,11 @@
     bottom: 45px;
     z-index: 99;
 }
-
-
+/*created new class*/
+.primary{
+    color: #0000AC;
+}
+/*end of new class*/
 /*** Spinner ***/
 #spinner {
     opacity: 0;

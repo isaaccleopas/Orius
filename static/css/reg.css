@@ -23,7 +23,7 @@ body{
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 25px;
-  color: black;
+  color: #0000AC;
   text-transform: uppercase;
   text-align: center;
 }
@@ -40,7 +40,7 @@ body{
 
 .wrapper .form .inputfield label{
    width: 200px;
-   color: #757575;
+   color: #0000AC;
    margin-right: 10px;
   font-size: 14px;
 }
@@ -49,7 +49,7 @@ body{
 .wrapper .form .inputfield .textarea{
   width: 100%;
   outline: none;
-  border: 1px solid #d5dbd9;
+  border: 1px solid #0000AC;
   font-size: 15px;
   padding: 8px 10px;
   border-radius: 3px;
@@ -74,7 +74,7 @@ body{
   top: 12px;
   right: 10px;
   border: 8px solid;
-  border-color: #d5dbd9 transparent transparent transparent;
+  border-color: #0000AC transparent transparent transparent;
   pointer-events: none;
 }
 
@@ -88,15 +88,25 @@ body{
   border: 0px;
   padding: 8px 10px;
   font-size: 15px;
-  border: 1px solid #d5dbd9;
+  border: 1px solid #0000AC;
   border-radius: 3px;
 }
-
+  /*addede this new styling*/
+  .tagged{
+    text-align: center;
+    display: flex;
+  } 
+  .tag{
+    font-size: 30px;
+    font-weight: bold;
+    color: #0000AC;
+  } 
+  /*new styling ends here*/
 
 .wrapper .form .inputfield .input:focus,
 .wrapper .form .inputfield .textarea:focus,
 .wrapper .form .inputfield .custom_select select:focus{
-  border: 1px solid #fec107;
+  border: 1px solid #0000AC;
 }
 
 .wrapper .form .inputfield p{

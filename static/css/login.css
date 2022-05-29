@@ -6,7 +6,7 @@
   
   :root {
     --baseColor: #606468;
-    --basedColor: #ffff;
+    --basedColor: #0000AC;/*new color*/
   }
   
   /* helpers/align.css */
@@ -77,7 +77,7 @@
   }
   
   body {
-    background-image: linear-gradient(rgba(78, 75, 75, 0.959), rgba(12, 12, 12, 0.856)), url(/images/login.jpg);
+    /*erased background image here*/
     color: var(--bodyColor);
     font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
     font-size: var(--bodyFontSize);
@@ -90,7 +90,7 @@
   /* modules/anchor.css */
   
   :root {
-    --anchorColor: #eee;
+    --anchorColor: #0000AC;/*new color*/
   }
   
   a {
@@ -145,21 +145,31 @@
   
   .form__input {
     flex: 1;
-  }
+  }  /*addede this new styling*/
+  .tagged{
+    text-align: center;
+    display: flex;
+  } 
+  .tag{
+    font-size: 30px;
+    font-weight: bold;
+  } 
+  /*new styling ends here*/
+
   
   /* modules/login.css */
-  
+  /*new colors for root*/
   :root {
     --loginBorderRadus: 0.25rem;
     --loginColor: #eee;
   
-    --loginInputBackgroundColor: #ffff;
+    --loginInputBackgroundColor: #0000AC;
     --loginInputHoverBackgroundColor: #434a52;
   
-    --loginLabelBackgroundColor: #363b41;
+    --loginLabelBackgroundColor: #ffff;
   
     --loginSubmitBackgroundColor: #0000AC;
-    --loginSubmitColor: #eee;
+    --loginSubmitColor: #0000AC;
     --loginSubmitHoverBackgroundColor: #0000AC;
   }
   
@@ -187,15 +197,10 @@
     background-color: var(----loginInputHoverBackgroundColor);
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
-    color: black;
+    color: #0000AC;/*added new color here*/
   }
   
-  /*.login input[type="password"]:focus,
-  .login input[type="password"]:hover,
-  .login input[type="text"]:focus,
-  .login input[type="text"]:hover {
-    background-color: var(--loginInputHoverBackgroundColor);
-}*/
+ 
   
   .login input[type="submit"] {
     background-color: var(--loginSubmitBackgroundColor);

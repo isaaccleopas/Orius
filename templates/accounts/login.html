@@ -4,6 +4,14 @@
 {% block title %} Login {% endblock %}
 {% block static %}
 {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <!-- MAIN CSS -->
     <link rel="stylesheet" href="{% static 'css/reg.css' %}">
     <link rel="stylesheet" href="{% static 'css/templatemo-digital-trend.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -14,6 +22,9 @@
 <!---login form begins-->
 <body class="align">
 
+  <div class="tagged">
+    <img src="images/logo-removebg-preview.png" height="100px"><h3 class="tag">ORIUS<br>MEDICAL</h3>
+  </div>
     <div class="grid">
   
       <form action="" method="POST" class="form login"> {% csrf_token %}
