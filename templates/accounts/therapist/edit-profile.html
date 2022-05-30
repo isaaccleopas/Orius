@@ -139,16 +139,13 @@
             <!-- Navbar End -->
     
 
-
+            <form method="post">  {% csrf_token %}
             <section class="py-5 my-5">
                 <div class="container">
                     <h1 class="mb-5"></h1>
                    <div class="bg-white shadow rounded-lg d-block d-sm-flex">
-               <div class="profile-tab-nav border-right">
+                <div class="profile-tab-nav border-right">
                    <div class="p-4">
-                       <div class="img-circle text-center mb-3">
-                        <img src="{%static 'img/user2.jpg' %}" alt="Image" class="shadow">
-                       </div>
                        <h4 class="text-center">{{ request.user.first_name }}</h4>
                    </div>
                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -156,17 +153,13 @@
                            <i class="fa fa-home text-center mr-1"></i> 
                            Account
                        </a>
-                       <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab" aria-controls="security" aria-selected="false">
-                           <i class="fa fa-user text-center mr-1"></i> 
-                           <label for="file">Profile Picture</label>
-                       </a>
                    </div>
                </div>
                    </div>
                </div>
 
                <!--user settings profile continues here-->
-               <form method="post">  {% csrf_token %}
+               
                <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
                     <h3 class="mb-4">Account Settings</h3>
@@ -195,7 +188,7 @@
                                   <input name="phone_number" type="text" class="form-control">
                             </div>
                         </div>
-                        div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                   <label>Designation</label>
                                   <input name="designation" type="text" class="form-control">
@@ -208,17 +201,16 @@
                             </div>
                         </div>
                        
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Update</button>
+                        </div>
+                        </div>
                     </div>
                 </div>
+            </div>
             </form>
-            </div>
-            </div>
-            </div>
-            </section>
-            <div>      
+            </section>    
             <!--user settings ends here-->
 
         <!-- JavaScript Libraries -->
