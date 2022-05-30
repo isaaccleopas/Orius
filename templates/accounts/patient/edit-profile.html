@@ -34,6 +34,8 @@
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
 <link rel="stylesheet" href="{% static 'css/reg.css' %}">
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+<link href="{% static 'css5/sass/style.scss' %}">
 
 {% endblock %}
 
@@ -126,7 +128,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <!--<img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">-->
-                            <span class="d-none d-lg-inline-flex">User</span>
+                            <span class="d-none d-lg-inline-flex">{{ request.user.first_name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="{% url 'accounts:patient-profile-update'  %}" class="dropdown-item">Edit Profile</a>
@@ -137,7 +139,137 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-    
+            
+            <!--new change-->
+            <!--user settings profile-->
+            <section class="py-5 my-5">
+                <div class="container">
+                    <h1 class="mb-5"></h1>
+                   <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+               <div class="profile-tab-nav border-right">
+                   <div class="p-4">
+                       <div class="img-circle text-center mb-3">
+                           <img src="{%static 'img/user2.jpg' %}" alt="Image" class="shadow">
+                           
+                       </div>
+                       <h4 class="text-center">Kiran Acharya</h4>
+                   </div>
+                   <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                       <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+                           <i class="fa fa-home text-center mr-1"></i> 
+                           Account
+                       </a>
+                       <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
+                           <i class="fa fa-key text-center mr-1"></i> 
+                           Password
+                       </a>
+                      
+                   </div>
+               </div>
+               <!--user settings profile continues here-->
+               <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                    <h3 class="mb-4">Account Settings</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>First Name</label>
+                                  <input type="text" class="form-control" value="Kiran">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>Last Name</label>
+                                  <input type="text" class="form-control" value="Acharya">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>Email</label>
+                                  <input type="text" class="form-control" value="kiranacharya287@gmail.com">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>Phone number</label>
+                                  <input type="text" class="form-control" value="+91 9876543215">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>Age</label>
+                                  <input type="number" class="form-control" value="+91 9876543215">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>Location</label>
+                                  <input type="text" class="form-control" placeholder="Lagos NG">
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div>
+                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                    <h3 class="mb-4">Password Settings</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>Old password</label>
+                                  <input type="password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>New password</label>
+                                  <input type="password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                  <label>Confirm new password</label>
+                                  <input type="password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </div>
+                </div>
+        
+      
+                
+                
+            </div>
+            </div>
+            </div>
+            </section>
+<!--user settings ends here-->
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'lib/chart/chart.min.js' %}"></script>
+        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+        <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'lib/tempusdominus/js/moment.min.js' %}"></script>
+        <script src="{% static 'lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+        <script src="{% static 'lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+        <!-- Template Javascript -->
+        <script src="{% static 'js/main.js' %}"></script>
+                <!--added user settings js-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
             <div class="wrapper">
                 <div class="title">
                     <center> <h3>Edit Profile </h3></center>
