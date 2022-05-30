@@ -140,6 +140,11 @@
             </nav>
             <!-- Navbar End -->
             
+            <div class="wrapper">
+                <div class="title">
+                    <center> <h3>Edit Profile </h3></center>
+                </div>
+                <form action="" method="POST">{% csrf_token %}
             <!--new change-->
             <!--user settings profile-->
             <section class="py-5 my-5">
@@ -270,11 +275,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-            <div class="wrapper">
-                <div class="title">
-                    <center> <h3>Edit Profile </h3></center>
-                </div>
-                <form action="" method="POST">{% csrf_token %}
+
                             {{ form|bootstrap }}
                     <div class="form">
                     
