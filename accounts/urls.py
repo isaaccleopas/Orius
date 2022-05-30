@@ -11,4 +11,5 @@ urlpatterns = [
     path('therapist/profile/update/', EditTherapistProfileView.as_view(), name='therapist-profile-update'),
     path('login', LoginView.as_view(), name='login'),
     path('logout', LogoutView.as_view(), name='logout'),
+    # path('', Password)
 ]
