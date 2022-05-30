@@ -14,6 +14,6 @@ urlpatterns = [
     path('logout', LogoutView.as_view(), name='logout'),
     path('patient-password/', auth_views.PasswordChangeView.as_view(
             template_name='accounts/patient/patient-password.html',
-            success_url = 'patient-password'), name='patient-password'),
+            success_url = 'patient/profile/update/'), name='patient-password'),
     # path('', TherapistPassword.as_view(), name='therapist-password'),
 ]
