@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
 
-{% block title %}Patient Profile Edit{% endblock %}
+{% block title %}Account Settings{% endblock %}
 
 {% block static %}
 {% load static %}
@@ -131,7 +131,7 @@
                             <span class="d-none d-lg-inline-flex">{{ request.user.first_name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="{% url 'accounts:patient-password'  %}" class="dropdown-item">Settings</a>
+                            <a href="{% url 'accounts:patient-password'  %}" class="dropdown-item">Password Settings</a>
                             <a href="{% url 'accounts:logout' %}" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
@@ -157,15 +157,12 @@
                            <i class="fa fa-home text-center mr-1"></i> 
                            Account
                        </a>
-                       <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
-                           <i class="fa fa-key text-center mr-1"></i> 
-                           Password
-                       </a>
                       
                    </div>
                </div>
 
                <!--user settings profile continues here-->
+               <form method="post">  {% csrf_token %}
                <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
                     <h3 class="mb-4">Account Settings</h3>
@@ -210,40 +207,9 @@
                     </div>
                     <div>
                         <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-                    <h3 class="mb-4">Password Settings</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>Old password</label>
-                                  <input type="password" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>New password</label>
-                                  <input type="password" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>Confirm new password</label>
-                                  <input type="password" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
-                    </div>
-                </div>
-                
-                
+            </form>
             </div>
             </div>
             </div>

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, reverse, reverse_lazy
 from .views import *
 from appointment.views import *
 from django.contrib.auth import views as auth_views
@@ -14,6 +14,9 @@ urlpatterns = [
     path('logout', LogoutView.as_view(), name='logout'),
     path('patient-password/', auth_views.PasswordChangeView.as_view(
             template_name='accounts/patient/patient-password.html',
-            success_url = 'patient/profile/update/'), name='patient-password'),
-    # path('', TherapistPassword.as_view(), name='therapist-password'),
+            success_url = "/session"), name='patient-password'),
+            # success_url = 'patient/profile/update/'), name='patient-password'),
+    path('therapist-password/', auth_views.PasswordChangeView.as_view(
+            template_name='accounts/therapist/therapist-password.html',
+            success_url = "/patient"), name='therapist-password'),
 ]
