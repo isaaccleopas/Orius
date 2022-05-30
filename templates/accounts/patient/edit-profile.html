@@ -140,13 +140,9 @@
             </nav>
             <!-- Navbar End -->
             
-            <div class="wrapper">
-                <div class="title">
-                    <center> <h3>Edit Profile </h3></center>
-                </div>
+        
                 <form action="" method="POST">{% csrf_token %}
-            <!--new change-->
-            <!--user settings profile-->
+
             <section class="py-5 my-5">
                 <div class="container">
                     <h1 class="mb-5"></h1>
@@ -157,7 +153,7 @@
                           
                            
                        </div>
-                       <h4 class="text-center">Kiran Acharya</h4>
+                       <h4 class="text-center">{{ request.user.first_name }}</h4>
                    </div>
                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                        <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
