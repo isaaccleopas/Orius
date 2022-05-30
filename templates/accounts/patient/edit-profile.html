@@ -160,63 +160,61 @@
                       
                    </div>
                </div>
-
-               <!--user settings profile continues here-->
-               <form method="post">  {% csrf_token %}
-               <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-                    <h3 class="mb-4">Account Settings</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>First Name</label>
-                                  <input name="first_name" type="text" class="form-control">
+                <!--user settings ends here-->
+                <form method="post">  {% csrf_token %}
+                    <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                        <h3 class="mb-4">Account Settings</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input name="first_name" type="text" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>Last Name</label>
-                                  <input name="last_name" type="text" class="form-control">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input name="last_name" type="text" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>Email</label>
-                                  <input name="email" type="text" class="form-control">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input name="email" type="text" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>Phone number</label>
-                                  <input name="phone_number" type="text" class="form-control">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input name="phone_number" type="text" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>Age</label>
-                                  <input name="age" type="number" class="form-control">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Age</label>
+                                    <input name="age" type="number" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>Location</label>
-                                  <input type="text" class="form-control" name="location">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <input type="text" class="form-control" name="location">
+                                </div>
                             </div>
+                            
                         </div>
-                       
+                        <div>
+                            <button class="btn btn-primary">Update</button>
+                        </div>
                     </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                    </div>
+                </form>
                 </div>
-            </form>
-            </div>
-            </div>
-            </div>
-            </section>
-            <div>      
-        
-<!--user settings ends here-->
+                </div>
+                </div>
+                </section>
+                <div>      
+
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
