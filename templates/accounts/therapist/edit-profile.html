@@ -147,8 +147,7 @@
                <div class="profile-tab-nav border-right">
                    <div class="p-4">
                        <div class="img-circle text-center mb-3">
-                          
-                           
+                        <img src="{%static 'img/user2.jpg' %}" alt="Image" class="shadow">
                        </div>
                        <h4 class="text-center">{{ request.user.first_name }}</h4>
                    </div>
@@ -157,7 +156,12 @@
                            <i class="fa fa-home text-center mr-1"></i> 
                            Account
                        </a>
-                      
+                       <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab" aria-controls="security" aria-selected="false">
+                           <i class="fa fa-user text-center mr-1"></i> 
+                           <label for="file">Profile Picture</label>
+                       </a>
+                   </div>
+               </div>
                    </div>
                </div>
 
@@ -191,16 +195,16 @@
                                   <input name="phone_number" type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        div class="col-md-6">
                             <div class="form-group">
                                   <label>Designation</label>
                                   <input name="designation" type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                   <label>Bio</label>
-                                  <input name="bio" type="text" class="form-control">
+                                <textarea name="bio" class="form-control" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore vero enim error similique quia numquam ullam corporis officia odio repellendus aperiam consequatur laudantium porro voluptatibus, itaque laboriosam veritatis voluptatum distinctio!</textarea>
                             </div>
                         </div>
                        
