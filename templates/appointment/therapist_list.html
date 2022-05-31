@@ -67,7 +67,7 @@
             </div>
             <div class="navbar-nav w-100">
                 <a href="{% url 'appointment:session-list' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="doc.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Doctors</a>
+                <a href="{% url 'appointment:therapist-list' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Therapists</a>
                 <a href="booking.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Book Appointment</a>          
                
             </div>
@@ -144,44 +144,18 @@
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Therapists</h6>
                             <div class="owl-carousel testimonial-carousel">
-                                <div class="testimonial-item text-center">
-                                    {% for apt in appointments %}
-        
-                                    {% if request.user.is_authenticated and request.user.role == 'patient' %}
-                                        <h5>{{ apt.user.first_name }} {{ apt.user.last_name }}</h5>
-                                            <p>Available {{ apt.start_time }}</p>
-                                            <p>
-                                                <a href="{% url 'appointment:take-appointment' apt.id %}"> Take Appointment</a>
-                                            </p>
-                                </div>
+
+                                {% for therapist in therapists %}
+
                                 <div class="testimonial-item text-center">
                                     <!--doctors uploaded photo will go here-->
                                     <img class="img-fluid rounded-circle mx-auto mb-4" src="#" style="width: 100px; height: 100px;">
-                                    <h5 class="mb-1">Name</h5>
-                                    <p>Psychologist</p>
-                                    <p class="mb-0">About</p>
+                                    <h5 class="mb-1">{{ therapist.first_name }} {{ therapist.last_name }}</h5>
+                                    <p>{{ therapist.designation }}</p>
+                                    <p class="mb-0">{{ therapist.bio }}</p>
                                 </div>
-                                <div class="testimonial-item text-center">
-                                    <!--doctors uploaded photo will go here-->
-                                    <img class="img-fluid rounded-circle mx-auto mb-4" src="#" style="width: 100px; height: 100px;">
-                                    <h5 class="mb-1">Name</h5>
-                                    <p>Psychologist</p>
-                                    <p class="mb-0">About</p>
-                                </div>
-                                <div class="testimonial-item text-center">
-                                    <!--doctors uploaded photo will go here-->
-                                    <img class="img-fluid rounded-circle mx-auto mb-4" src="#" style="width: 100px; height: 100px;">
-                                    <h5 class="mb-1">Name</h5>
-                                    <p>Psychologist</p>
-                                    <p class="mb-0">About</p>
-                                </div>
-                                <div class="testimonial-item text-center">
-                                    <!--doctors uploaded photo will go here-->
-                                    <img class="img-fluid rounded-circle mx-auto mb-4" src="#" style="width: 100px; height: 100px;">
-                                    <h5 class="mb-1">Name</h5>
-                                    <p>Psychologist</p>
-                                    <p class="mb-0">About</p>
-                                </div>
+                                {% endfor %}
+                            
                             </div>
                         </div>
                     </div>
@@ -189,34 +163,7 @@
                 </div>
             </div>
             <!-- Chart End -->
-    
-    </section>
-    
-    <section Style="text-align: center;">
-        
-        <h2>Therapist</h2>
-        {% for apt in appointments %}
-        
-            {% if request.user.is_authenticated and request.user.role == 'patient' %}
-                <h5>{{ apt.user.first_name }} {{ apt.user.last_name }}</h5>
-                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
-                    <p>
-                        <a href="{% url 'appointment:take-appointment' apt.id %}"> Take Appointment</a>
-                    </p>
-    
-                {% elif request.user.is_authenticated and request.user.role == 'therapist'   %}
-                    <h5>{{ apt.user.first_name }} {{ apt.user.last_name }}</h5>
-                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
-    
-                {% else %}
-                    <h5>{{ apt.user.first_name }} {{ apt.user.last_name }}</h5>
-                    <p>Available {{ apt.start_time }} to {{ apt.end_time }}</p>
-    
-            {% endif %}
-    
-        {% endfor %}
-    </section>
-    
+       
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -236,43 +183,5 @@
 <!-- Template Javascript -->
 <script src="{% static 'js/main.js' %}"></script>
 
-<section>
-
-    <!-- <section>
-        <div class="container" style="align-items: center; justify-content: center;display: flex;">
-            <div class="col-12 col-sm-6 col-md-4">
-                <h3 style="align-items: center;justify-content: center;display: flex"> {{ request.user.first_name }} has {{ sessions.count }} Session/s</h3>
-            </div>
-        </div>
-    </section>
-
-
-    <section>
-
-        <div class="container">
-
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Status</th>
-
-                </tr>
-                </thead>
-                <tbody>
-
-                {% for session in sessions %}
-                    <tr>
-                        <td>{{ session.appointment.full_name }}</td>
-                        <td> {{ session.date }}</td>
-                        <td>{{ session.status }}</td>
-
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </section> -->
 
 {% endblock %}

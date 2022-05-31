@@ -17,7 +17,8 @@ urlpatterns = [
     path('search/', SearchView.as_view(), name='search'),
     path('patient/', PatientListView.as_view(), name='patient-list'),
     path('<pk>/appointment-status/', AppointmentStatusView.as_view(), name='appointment-status'),
-    path('session/', PreviousSessionsView.as_view(), name='session-list')
+    path('session/', PreviousSessionsView.as_view(), name='session-list'),
+    path('patient/therapists/', TherapistListView.as_view(), name='therapist-list'),
 
     # path('patients/<int:appointment_id>', PatientPerAppointmentView.as_view(), name='patient-list'),
 

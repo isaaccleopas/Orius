@@ -325,3 +325,18 @@ class AppointmentStatusView(UserPassesTestMixin, UpdateView):
         
         # print(take_appointment_model.appointment.status)
         return super().post(request, args, kwargs)
+
+class TherapistListView(UserPassesTestMixin, ListView):
+    model = User
+    context_object_name = 'therapists'
+    template_name = "appointment/therapist_list.html"
+
+    login_url="/"
+
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+        return self.request.user.role == "patient"
+
+    def get_queryset(self):
+        return self.model.objects.filter(role='therapist')
