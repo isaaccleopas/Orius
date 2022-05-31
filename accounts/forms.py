@@ -18,8 +18,9 @@ class PatientRegistrationForm(UserCreationForm):
         self.fields['first_name'].label = "First Name"
         self.fields['last_name'].label = "Last Name"
         self.fields['email'].label = "Email"
-        self.fields['address'].label = "Address"
         self.fields['phone_number'].label = "Phone Number"
+        self.fields['age'].label = "Age"
+        self.fields['location'].label = "Location"
         self.fields['password1'].label = "Password"
         self.fields['password2'].label = "Confirm Password"
         for fieldname in ['password1', 'password2']:
@@ -42,14 +43,19 @@ class PatientRegistrationForm(UserCreationForm):
                 'placeholder': 'Enter Email',
             }
         )
-        self.fields['address'].widget.attrs.update(
-            {
-                'placeholder': 'Enter Address',
-            }
-        )
         self.fields['phone_number'].widget.attrs.update(
             {
                 'placeholder': 'Enter Phone Number',
+            }
+        )
+        self.fields['age'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Age',
+            }
+        )
+        self.fields['location'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Location',
             }
         )
         self.fields['password1'].widget.attrs.update(
@@ -66,7 +72,7 @@ class PatientRegistrationForm(UserCreationForm):
     class Meta:
         model = User
 
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'password1', 'password2', 'address', 'gender' ]
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'age', 'location', 'password1', 'password2', 'gender' ]
         error_messages = {
             'first_name': {
                 'required': 'First name is required',
@@ -102,9 +108,10 @@ class TherapistRegistrationForm(UserCreationForm):
         self.fields['gender'].required = True
         self.fields['first_name'].label = "First Name"
         self.fields['last_name'].label = "Last Name"
-        self.fields['address'].label = "Address"
         self.fields['email'].label = "Email"
         self.fields['phone_number'].label = "Phone Number"
+        self.fields['designation'].label = "Designation"
+        self.fields['bio'].label = "Bio"
         self.fields['password1'].label = "Password"
         self.fields['password2'].label = "Confirm Password"
         for fieldname in ['password1', 'password2']:
@@ -120,11 +127,6 @@ class TherapistRegistrationForm(UserCreationForm):
                 'placeholder': 'Enter Last Name',
             }
         )
-        self.fields['address'].widget.attrs.update(
-            {
-                'placeholder': 'Enter Address',
-            }
-        )
         self.fields['email'].widget.attrs.update(
             {
                 'placeholder': 'Enter Email',
@@ -133,6 +135,16 @@ class TherapistRegistrationForm(UserCreationForm):
         self.fields['phone_number'].widget.attrs.update(
             {
                 'placeholder': 'Enter Phone Number',
+            }
+        )
+        self.fields['designation'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Designation',
+            }
+        )
+        self.fields['bio'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Bio',
             }
         )
         self.fields['password1'].widget.attrs.update(
@@ -148,7 +160,7 @@ class TherapistRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'password1', 'password2', 'address', 'gender']
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'designation', 'bio', 'password1', 'password2', 'gender']
         error_messages = {
             'first_name': {
                 'required': 'First name is required',
