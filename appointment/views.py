@@ -54,7 +54,6 @@ class EditPatientProfileView(UserPassesTestMixin, UpdateView):
 
     def get_object(self, queryset=None):
         obj = self.request.user
-        print(obj)
         if obj is None:
             raise Http404("Patient doesn't exists")
         return obj
