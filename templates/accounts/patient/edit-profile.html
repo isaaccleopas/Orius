@@ -172,37 +172,42 @@
                                     <input name="first_name" type="text" class="form-control">
                                 </div>
                             </div>
+                            {{ form.errors.first_name }}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last Name</label>
                                     <input name="last_name" type="text" class="form-control">
                                 </div>
                             </div>
+                            {{ form.errors.last_name }}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input name="email" type="text" class="form-control">
                                 </div>
                             </div>
+                            {{ form.errors.email }}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Phone number</label>
                                     <input name="phone_number" type="text" class="form-control">
                                 </div>
                             </div>
+                            {{ form.errors.phone_number }}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Age</label>
                                     <input name="age" type="number" class="form-control">
                                 </div>
                             </div>
+                            {{ form.errors.age }}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Location</label>
                                     <input type="text" class="form-control" name="location">
                                 </div>
                             </div>
-                            
+                            {{ form.errors.location }}
                         </div>
                         <div>
                             <button class="btn btn-primary">Update</button>

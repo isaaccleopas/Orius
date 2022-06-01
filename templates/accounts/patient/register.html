@@ -20,18 +20,22 @@
             <label>First Name</label>
             <input name="first_name" type="text" class="input">
          </div>  
+         {{ form.errors.first_name }}
           <div class="inputfield">
             <label>Last Name</label>
             <input name="last_name" type="text" class="input">
          </div>  
+         {{ form.errors.last_name }}
          <div class="inputfield">
             <label>Password</label>
             <input name="password1" type="password" class="input">
          </div>  
+         {{ form.errors.password1 }}
         <div class="inputfield">
             <label>Confirm Password</label>
             <input name="password2" type="password" class="input">
          </div> 
+         {{ form.errors.password2 }}
           <div class="inputfield">
             <label>Gender</label>
             <div class="custom_select">
@@ -46,18 +50,22 @@
             <label>Email Address</label>
             <input name="email" type="text" class="input">
          </div>
+         {{ form.errors.email }}
          <div class="inputfield">
           <label>Age</label>
           <input name="age" type="number" class="input">
         </div> 
+        {{ form.errors.age }}
         <div class="inputfield">
             <label>Phone Number</label>
             <input name="phone_number" type="text" class="input">
          </div> 
+         {{ form.errors.phone_number }}
          <div class="inputfield">
           <label>Location</label>
           <input name="location" class="input" type="text" placeholder="Lagos NG"></input>
          </div>
+         {{ form.errors.location }}
         <!--<div class="inputfield">
             <label>Postal Code</label>
             <input type="text" class="input">

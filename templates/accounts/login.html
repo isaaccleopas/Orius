@@ -21,6 +21,11 @@
 
 <!---login form begins-->
 <body class="align">
+  <!--added new div with class 'tagged', and also added an h3 element-->
+  <div class="tagged">
+  <img src="{%static 'images/logo-removebg-preview.png' %}" height="100px"><h3 class="tag">ORIUS<br>MEDICAL</h3>
+</div>
+<body class="align">
 
   <div class="tagged">
     
@@ -32,9 +37,10 @@
         <div class="form__field">
           <label for="login__username"><svg class="icon">
               <use xlink:href="#icon-user"></use>
-            </svg><span class="hidden">Username</span></label>
-          <input autocomplete="username" id="login__username" type="text" name="email" class="form__input" placeholder="Username" required>
+            </svg><span class="hidden">Email</span></label>
+          <input autocomplete="username" id="login__username" type="text" name="email" class="form__input" placeholder="Email" required>
         </div>
+          {{ form.errors.email }}
   
         <div class="form__field">
           <label for="login__password"><svg class="icon">
@@ -42,15 +48,15 @@
             </svg><span class="hidden">Password</span></label>
           <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
         </div>
-  
+          {{ form.errors.password }}
         <div class="form__field">
           <button>
-            <!-- <svg class="icon">
+            <svg class="icon">
               <use xlink:href="#icon-arrow-right"></use>
-            </svg> -->
-            <!-- <input type="submit" value="Login" class="btn"> -->
-            <!-- <span><a href="{% url 'accounts:login' %}">Sign in</a></span> -->
-          <input type="submit" value="Sign In">
+              <input type="submit" value="Sign In">
+              <span> Sign in </span>
+            </svg>
+          
         </button>
         </div>
   
