@@ -119,6 +119,8 @@
     outline: 0;
     padding: 0;
     transition: background-color 0.3s;
+    height: 50px;
+    border: 1px solid#0000AC;
   }
   
   input[type="submit"] {
@@ -204,9 +206,10 @@
   
   .login input[type="submit"] {
     background-color: var(--loginSubmitBackgroundColor);
-    color: #0000AC;
+    color: #fff;
     font-weight: 700;
     text-transform: uppercase;
+    font-size: 'Montserrat';
   }
   
   .login input[type="submit"]:focus,
